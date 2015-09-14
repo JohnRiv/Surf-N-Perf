@@ -1,3 +1,29 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
+env:
+  global:
+    GH_REF: "github.com/JohnRiv/Surf-N-Perf"
+    secure: NMQ2s+dbgehvyXrujJdl+M7pe4adhD8/y6KqoODgoLcDAt5Hys0TiUcK2NhYYTWKZfXAYs++INFZglicPhIwTRXyQfW13wzuIVV/9ZhplQOufUVeHQal5kr/ZjXd5pOjNLUcfPMcUpkp19En/fxdwwbVm2VkJRKzRm0fwFCE3xa8v4+whC0p6DOvdAcFC64t4P8U7Gpa5DRjEvlPSCnMRRrhJUayTSWp+3sWF8yatSkBRuI1LkX7E+Kgzu9iwNOqx9AL8DndkKEw/x/U0WXTyJrbe333OsuKS30BYdZ9OX8GB4lI1O2OB69G4mSl/KeK/z5Yy/549kL6pxtpJaRAMwvHV0+3kcOsZwjm2gMGlLvyuesI+3NbUEtTMmW49nQxv3nWe+KJa0AlINSAucfRPAVj0jAB2rRRPybZanGZeOsJyogjb9NUoNyNmGneII1CxsDeuE/XkLt2OK6fPBrv/L18FSjmSE9XzXfmj6Q3pIOw8nfdNatLv7e6bZxmCR3VeM/TMCsn9rANAKTAaKGNBiGCKYXAnICFiRTqMzq6U2M08MxvWLWu66CuFqujy5kJfsMwG9UE/WpNVYIXmeiKYdQV0ikPte9DQtV7Z9i4AH9u9//bQPetKl73nNTOo0S2laKBHTmYacs9e1kL3jyOWtbl0lKDx5kDHRGhzpzpqls=
+branches:
+  only:
+    - master
+before_install: npm install -g grunt-cli
+install:
+  - npm install
+after_success:
+  - git remote set-url origin "github.com/JohnRiv/Surf-N-Perf.git"
+  - git config --global user.email "github@riviello.net"
+  - git config --global user.name "John Riviello"
+  - echo $TRAVIS_TEST_RESULT
+  - grunt docs
+  - git add -A docs/
+  - git status
+  - git stash
+  - git checkout gh-pages
+  - ls -la
+  - git stash pop
+  - git status
+  - git add -A docs/
+  - git commit -m "Automated documentation update"
+  - git push "https://${GH_TOKEN}:@${GH_REF}" gh-pages

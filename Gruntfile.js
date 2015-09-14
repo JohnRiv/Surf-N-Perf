@@ -36,6 +36,17 @@ module.exports = function(grunt) {
         singleRun: true
       },
     },
+    copy: {
+      main: {
+        src: 'NOTICE',
+        dest: 'docs/notice.txt',
+        options: {
+          process: function (content, srcpath) {
+            return content.replace(/Surf-N-Perf\.js/,"Surf-N-Perf.js - " + (new Date()));
+          },
+        },
+  },
+    },
     watch: {
       dev: {
         files: ['surfnperf.js', 'spec/**/*.js'],
@@ -60,6 +71,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-jsbeautifier');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
 
@@ -67,4 +79,5 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['jshint', 'karma:continuous', 'uglify']);
   grunt.registerTask('precommit', ['jsbeautifier', 'build']);
   grunt.registerTask('dev', ['concurrent:target']);
+  grunt.registerTask('docs', ['copy']);
 };
