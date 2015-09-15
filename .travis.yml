@@ -13,17 +13,19 @@ install:
   - npm install
 after_success:
   - git remote set-url origin "github.com/JohnRiv/Surf-N-Perf.git"
-  - git config --global user.email "github@riviello.net"
-  - git config --global user.name "John Riviello"
-  - echo $TRAVIS_TEST_RESULT
+  - git config user.email "github@riviello.net"
+  - git config user.name "John Riviello"
+  - git config -l
   - grunt docs
   - git add -A docs/
   - git status
   - git stash
+  - git remote set-branches --add origin gh-pages
+  - git fetch origin gh-pages
   - git checkout gh-pages
   - ls -la
   - git stash pop
   - git status
   - git add -A docs/
   - git commit -m "Automated documentation update"
-  - git push "https://${GH_TOKEN}:@${GH_REF}" gh-pages
+  - git push "https://$GH_TOKEN:@$GH_REF" gh-pages
