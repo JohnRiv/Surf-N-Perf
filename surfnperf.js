@@ -114,6 +114,9 @@
     this.setCustom('initialUrl', window.location.pathname);
   };
 
+  /**
+   * Initializes the library
+   */
   SNPProto.initialize = function() {
     this._setPerformanceApis();
     this._setPerfProperties();
