@@ -36,16 +36,17 @@ module.exports = function(grunt) {
         singleRun: true
       },
     },
+    pkg: '<json:package.json>',
     copy: {
       main: {
         src: 'NOTICE',
         dest: '_build/docs/notice.txt',
         options: {
           process: function (content, srcpath) {
-            return content.replace(/Surf-N-Perf\.js/,"Surf-N-Perf.js - " + (new Date()));
+            return content.replace(/Surf-N-Perf\.js/,"Surf-N-Perf.js v<%= pkg.version %> - " + (new Date()));
           },
         },
-  },
+      },
     },
     watch: {
       dev: {
