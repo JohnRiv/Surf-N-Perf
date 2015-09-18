@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         src: 'NOTICE',
-        dest: 'docs/notice.txt',
+        dest: '_build/docs/notice.txt',
         options: {
           process: function (content, srcpath) {
             return content.replace(/Surf-N-Perf\.js/,"Surf-N-Perf.js - " + (new Date()));
