@@ -4,7 +4,7 @@ set -o errexit -o nounset
 
 rev=$(git rev-parse --short HEAD)
 
-grunt docs
+grunt jsdoc
 cd _build/
 git init
 git config user.name "John Riviello"
