@@ -1,4 +1,4 @@
-Surf-N-Perf.js - Fri Sep 18 2015 19:55:45 GMT+0000 (UTC)
+Surf-N-Perf.js v<%= pkg.version %> - Fri Sep 18 2015 20:03:01 GMT+0000 (UTC)
 Copyright 2015 Comcast Cable Communications Management, LLC
 
 This product includes software developed at Comcast (http://www.comcast.com/).
